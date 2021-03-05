@@ -1,0 +1,43 @@
+﻿
+@inject Microsoft.Extensions.DependencyInjection.IServiceCollection _services
+@{
+    Layout = null;
+    int count = 0;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SystemDetails</title>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css">
+</head>
+<body>
+    <table id="services">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Lifetime</th>
+                <th>Instance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var svc in _services)
+            {
+                ++count;
+                <tr>
+                    <td>@svc.ServiceType.FullName</td>
+                    <td>@svc.Lifetime</td>
+                    <td>@svc.ImplementationType?.FullName</td>
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+    <hr />
+    <p> Services Registered = @count</p>
+</body>
+</html>
